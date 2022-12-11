@@ -1,12 +1,11 @@
-#!/usr/bin/python3
-# coding=utf-8
-
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from ttkbootstrap.scrolled import ScrolledText, ScrolledFrame
 from ttkbootstrap.dialogs.dialogs import Messagebox
 import subprocess
 import json
+
+import configparser
 
 import os
 import datetime
@@ -118,7 +117,7 @@ class APP(ttk.Frame):
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
-        self.nootFrameCommandBtn[COMMAND] = self.openStartCommandJson
+        self.nootFrameCommandBtn[COMMAND] = self.openStartCommandIniFile
 
         self.noteFrame_down = ttk.LabelFrame(self.noteFrame,
                                              text=" --Content--  ",
@@ -306,7 +305,7 @@ class APP(ttk.Frame):
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
-        self.nootFrameCommandBtn[COMMAND] = self.openStartCommandJson
+        self.nootFrameCommandBtn[COMMAND] = self.openStartCommandIniFile
 
     def saveTypeNote(self, typedir):
         notePath = f"{self.rootPath}\{typedir}\{mark.toolNoteMark}"
@@ -369,20 +368,33 @@ class APP(ttk.Frame):
     def openToolCmd(self, typedir, tool):
         os.chdir(f"{self.rootPath}\{typedir}\{tool}")
 
-        subprocess.Popen(f'start cmd /k  "title {tool}"', shell=True)
+        iniPath = os.path.dirname(os.path.abspath(__file__))
+
+        iniPath = f"{iniPath}\config\startCommand.ini"
+        conf = configparser.ConfigParser()
+        conf.read(filenames=iniPath, encoding="utf-8")
+        if tool in conf.sections():
+            startCommand = conf.get(tool, "startCommand")
+            subprocess.Popen(
+                f'cd {self.rootPath}\{typedir}\{tool} && {startCommand}',
+                shell=True)
+
+        else:
+            subprocess.Popen(f'start cmd /k  "title {tool}"', shell=True)
         os.chdir(self.rootPath)
 
         print(typedir, tool)
 
-    def openStartCommandJson(self):
+    def openStartCommandIniFile(self):
         path = os.path.dirname(os.path.abspath(__file__))
+
+        path = f"{path}\config\startCommand.ini"
         print(path)
-        Path = f"{path}\config\startCommand.json"
-        with open(Path, encoding='utf-8') as f:
-            command_json_data = json.load(f)
+        with open(path, encoding='utf-8') as f:
             self.txtCount.delete('1.0', END)
-            self.txtCount.insert(END, command_json_data)
-        print(type(command_json_data))
+            self.txtCount.insert(END, f.read())
+            print(f.read())
+
         self.nootFrameCommandBtn.pack_forget()
         self.nootFrameTxtSaveBtn['state'] = DISABLED
         self.saveBtn = ttk.Button(self.noteFrame_up,
@@ -394,15 +406,15 @@ class APP(ttk.Frame):
                           pady=5,
                           ipadx=10,
                           ipady=10)
-        self.saveBtn[COMMAND] = self.saveStartCommandJson
-        return command_json_data
+        self.saveBtn[COMMAND] = self.saveStartCommandIniFile
 
-    def saveStartCommandJson(self):
+    def saveStartCommandIniFile(self):
         path = os.path.dirname(os.path.abspath(__file__))
+
+        path = f"{path}\config\startCommand.ini"
         print(path)
-        Path = f"{path}\config\startCommand.json"
-        command_json_data = self.txtCount.get(1.0, END)
-        print(type(command_json_data))
+        command_ini_data = self.txtCount.get(1.0, END)
+        print(type(command_ini_data))
         self.saveBtn.pack_forget()
 
         self.nootFrameCommandBtn.pack(anchor=W,
@@ -411,11 +423,11 @@ class APP(ttk.Frame):
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
-        with open(Path, "w", encoding='utf-8') as f:
-            json.dump(command_json_data, f, ensure_ascii=False)
+        with open(path, "w", encoding='utf-8') as f:
+            f.write(command_ini_data)
 
 
-root = ttk.Window(title="TOOLS_GUI    一款可以自己更新的工具箱__v1.0    by：tyB-or",
+root = ttk.Window(title="TOOLS_GUI    一款可以自己更新的工具箱__v1.0    by：tyb",
                   themename="morph")
 root.geometry(f'{mark.width}x{mark.height}+{mark.scree}')
 root.iconbitmap('logo.ico')
