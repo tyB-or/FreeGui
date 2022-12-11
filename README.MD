@@ -150,7 +150,11 @@ startGui.bat 、  startGui.vbs  都行
 
 当前已完善：编辑启动命令时，保存笔记按钮置灰，防止写入冲突。
 
+## 20221211更新
 
+完善快捷启动功能：编辑启动命令后保存，再次点击会直接运行工具而不是进入cmd界面。（方便启动jar,exe等工具。）
+
+![image-20221211232052308](https://github.com/tyB-or/FreeGui/blob/main/image/20221211.png)
 
 ## 免责声明
 
