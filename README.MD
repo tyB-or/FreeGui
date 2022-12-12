@@ -31,7 +31,7 @@ startGui.bat 、  startGui.vbs  都行
 
 参考demo:
 
-![image-20221212202346022](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212202346022.png)
+![image-20221212202346022](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212202346022.png)
 
 
 
@@ -39,39 +39,39 @@ startGui.bat 、  startGui.vbs  都行
 
 1：
 
-![image-20221212204834349](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212204834349.png)
+![image-20221212204834349](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212204834349.png)
 
 2：
 
-![image-20221212205434389](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212205434389.png)
+![image-20221212205434389](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212205434389.png)
 
 3：
 
-![image-20221212205843428](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212205843428.png)
+![image-20221212205843428](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212205843428.png)
 
-![image-20221212205942883](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212205942883.png)
+![image-20221212205942883](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212205942883.png)
 
 4：启动命令说明：
 
 点击前：
 
-![image-20221212210234445](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212210234445.png)
+![image-20221212210234445](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212210234445.png)
 
 点击后：
 
-![image-20221212210645137](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212210645137.png)
+![image-20221212210645137](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212210645137.png)
 
 5：启动工具按钮说明：
 
 我在这里把工具分为2类，图形化工具和命令行工具，在使用命令行工具时，点击按钮会自动进入该工具的cmd界面，并设置title
 
-![image-20221212211634138](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212211634138.png)
+![image-20221212211634138](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212211634138.png)
 
 图形化工具：如果不想使用命令行的方式启动，那就先配置好启动命令，保存后双击就是直接启动工具：
 
 （常见的启动方式：java  -jar  xx.jar        start  xx.exe   ）
 
-![image-20221212211856154](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212211856154.png)
+![image-20221212211856154](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212211856154.png)
 
 ## 后续：
 
@@ -83,23 +83,23 @@ startGui.bat 、  startGui.vbs  都行
 
 对应代码片段：
 
-![image-20221212214933439](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212214933439.png)
-
-![image-20221212214944724](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212214944724.png)
+![image-20221212214944724](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212214933439.png)
+![image-20221212212716778](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212214944724.png)
 
 mac版本的适配也在进行中，感谢@asaotomo
 
 ## DIY功能：
 
-**修改标识，位置：**
+**--修改标识，位置：**
 
 配置文件：FreeGui_v2.1_win\config\mark.py
 
-![image-20221212212716778](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20221212212716778.png)
+
+![image-20221212214933439](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212212716778.png)
 
 
 
-**修改内部布局，样式：**
+**--修改内部布局，样式：**
 
 主程序文件：FreeGui_v2.1_win\gui.py
 
@@ -107,7 +107,7 @@ mac版本的适配也在进行中，感谢@asaotomo
 
 
 
-**自由、快速、便捷的添加和更新工具**
+**--自由、快速、便捷的添加和更新工具**
 
 启动命令保存即生效。
 
