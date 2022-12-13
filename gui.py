@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# coding=utf-8
+
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from ttkbootstrap.scrolled import ScrolledText, ScrolledFrame
@@ -15,6 +18,7 @@ from config import mark
 
 
 class APP(ttk.Frame):
+
 
     def __init__(self, master=None):
         self.rootPath = tools_dict.tools_root_path()
@@ -68,56 +72,67 @@ class APP(ttk.Frame):
         self.noteFrame_up = ttk.Frame(self.noteFrame, bootstyle=PRIMARY)
         self.noteFrame_up.pack(side="top", fill="x", ipadx=7, ipady=10)
 
-        self.nootFrameToolLabel = ttk.Label(self.noteFrame_up,
+        self.noteFrameToolLabel = ttk.Label(self.noteFrame_up,
                                             text="  查看笔记：--toolInfo--  ",
                                             bootstyle="success")
-        self.nootFrameToolLabel.pack(anchor=W,
+        self.noteFrameToolLabel.pack(anchor=W,
                                      side="left",
                                      padx=5,
                                      pady=5,
                                      ipadx=10,
                                      ipady=10)
 
-        self.nootFrameTxtSaveBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameTxtSaveBtn = ttk.Button(self.noteFrame_up,
                                               text=" 保存笔记 ",
                                               bootstyle="success")
-        self.nootFrameTxtSaveBtn.pack(anchor=W,
+        self.noteFrameTxtSaveBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
 
-        self.nootFrameStartBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameStartBtn = ttk.Button(self.noteFrame_up,
                                             text=" 打开目录 ",
                                             bootstyle="success")
-        self.nootFrameStartBtn.pack(anchor=W,
+        self.noteFrameStartBtn.pack(anchor=W,
                                     side=RIGHT,
                                     padx=5,
                                     pady=5,
                                     ipadx=10,
                                     ipady=10)
 
-        self.nootFrameOpenDirBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameRefreshBtn = ttk.Button(self.noteFrame_up,
+                                              text=" 刷新GUI ",
+                                              bootstyle="success")
+        self.noteFrameRefreshBtn.pack(anchor=W,
+                                      side=RIGHT,
+                                      padx=5,
+                                      pady=5,
+                                      ipadx=10,
+                                      ipady=10)
+        self.noteFrameRefreshBtn["command"] = self.refresh
+
+        self.noteFrameOpenDirBtn = ttk.Button(self.noteFrame_up,
                                               text=" 启动工具 ",
                                               bootstyle="success")
-        self.nootFrameOpenDirBtn.pack(anchor=W,
+        self.noteFrameOpenDirBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
 
-        self.nootFrameCommandBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameCommandBtn = ttk.Button(self.noteFrame_up,
                                               text=" 编辑启动命令 ",
                                               bootstyle="info")
-        self.nootFrameCommandBtn.pack(anchor=W,
+        self.noteFrameCommandBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
-        self.nootFrameCommandBtn[COMMAND] = self.openStartCommandIniFile
+        self.noteFrameCommandBtn[COMMAND] = self.openStartCommandIniFile
 
         self.noteFrame_down = ttk.LabelFrame(self.noteFrame,
                                              text=" --Content--  ",
@@ -134,6 +149,7 @@ class APP(ttk.Frame):
 
         self.toolFrameFun()
 
+
     def toolFrameFun(self):
         r = 0
 
@@ -141,8 +157,7 @@ class APP(ttk.Frame):
             self.btnToolType = ttk.Button(
                 self.toolFrame,
                 text=k,
-                width=20,
-                bootstyle="danger-outline",
+                bootstyle="danger-link",
                 command=lambda a=k:
                 [self.openToolTypeNote(a),
                  self.toolTypeTitle(a)])
@@ -161,7 +176,6 @@ class APP(ttk.Frame):
                     self.toolFrame,
                     bootstyle="dark-link",
                     text=i,
-                    width=16,
                     command=lambda a=k, b=i:
                     [self.openToolNote(a, b),
                      self.toolTitle(a, b)])
@@ -178,6 +192,7 @@ class APP(ttk.Frame):
                 c += 1
             r += 1
 
+
     def toolTypeTitle(self, typedir):
 
         for widget in self.noteFrame_up.winfo_children():
@@ -185,56 +200,67 @@ class APP(ttk.Frame):
 
         self.text1 = f'--{typedir}--'
 
-        self.nootFrameToolLabel = ttk.Label(self.noteFrame_up,
+        self.noteFrameToolLabel = ttk.Label(self.noteFrame_up,
                                             text=self.text1,
                                             bootstyle="success")
-        self.nootFrameToolLabel.pack(anchor=W,
+        self.noteFrameToolLabel.pack(anchor=W,
                                      side="left",
                                      padx=10,
                                      pady=10,
                                      ipadx=10,
                                      ipady=10)
 
-        self.nootFrameTxtSaveBtn = ttk.Button(
+        self.noteFrameTxtSaveBtn = ttk.Button(
             self.noteFrame_up,
             text=" 保存笔记 ",
             bootstyle="success",
             command=lambda a=typedir: self.saveTypeNote(a))
-        self.nootFrameTxtSaveBtn.pack(anchor=W,
+        self.noteFrameTxtSaveBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
 
-        self.nootFrameStartBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameStartBtn = ttk.Button(self.noteFrame_up,
                                             text=" 打开目录 ",
                                             bootstyle="success")
-        self.nootFrameStartBtn.pack(anchor=W,
+        self.noteFrameStartBtn.pack(anchor=W,
                                     side=RIGHT,
                                     padx=5,
                                     pady=5,
                                     ipadx=10,
                                     ipady=10)
-        self.nootFrameStartBtn[
+        self.noteFrameStartBtn[
             COMMAND] = lambda arg0=typedir: self.openTypeDir(arg0)
 
-        self.nootFrameOpenDirBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameRefreshBtn = ttk.Button(self.noteFrame_up,
+                                              text=" 刷新GUI ",
+                                              bootstyle="success")
+        self.noteFrameRefreshBtn.pack(anchor=W,
+                                      side=RIGHT,
+                                      padx=5,
+                                      pady=5,
+                                      ipadx=10,
+                                      ipady=10)
+        self.noteFrameRefreshBtn["command"] = self.refresh
+
+        self.noteFrameOpenDirBtn = ttk.Button(self.noteFrame_up,
                                               text=" 启动工具 ",
                                               bootstyle="success",
                                               state=DISABLED)
-        self.nootFrameOpenDirBtn.pack(anchor=W,
+        self.noteFrameOpenDirBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
 
-        self.nootFrameCommandBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameCommandBtn = ttk.Button(self.noteFrame_up,
                                               text=" 编辑启动命令 ",
                                               bootstyle="success",
                                               state=DISABLED)
-        self.nootFrameCommandBtn.pack(anchor=W,
+        self.noteFrameCommandBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
@@ -248,64 +274,75 @@ class APP(ttk.Frame):
 
         self.text1 = f'--{typedir}--{tool}--'
 
-        self.nootFrameToolLabel = ttk.Label(self.noteFrame_up,
+        self.noteFrameToolLabel = ttk.Label(self.noteFrame_up,
                                             text=self.text1,
                                             bootstyle="success")
-        self.nootFrameToolLabel.pack(anchor=W,
+        self.noteFrameToolLabel.pack(anchor=W,
                                      side="left",
                                      padx=10,
                                      pady=10,
                                      ipadx=10,
                                      ipady=10)
 
-        self.nootFrameTxtSaveBtn = ttk.Button(
+        self.noteFrameTxtSaveBtn = ttk.Button(
             self.noteFrame_up,
             text=" 保存笔记 ",
             bootstyle="success",
             command=lambda a=typedir, b=tool: self.saveToolNote(a, b))
-        self.nootFrameTxtSaveBtn.pack(anchor=W,
+        self.noteFrameTxtSaveBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
 
-        self.nootFrameStartBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameStartBtn = ttk.Button(self.noteFrame_up,
                                             text=" 打开目录 ",
                                             bootstyle="success")
-        self.nootFrameStartBtn.pack(anchor=W,
+        self.noteFrameStartBtn.pack(anchor=W,
                                     side=RIGHT,
                                     padx=5,
                                     pady=5,
                                     ipadx=10,
                                     ipady=10)
-        self.nootFrameStartBtn[
+        self.noteFrameStartBtn[
             COMMAND] = lambda arg1=typedir, arg2=tool: self.openToolDir(
                 arg1, arg2)
 
-        self.nootFrameOpenDirBtn = ttk.Button(self.noteFrame_up,
-                                              text=" 启动工具 ",
+        self.noteFrameRefreshBtn = ttk.Button(self.noteFrame_up,
+                                              text=" 刷新GUI ",
                                               bootstyle="success")
-        self.nootFrameOpenDirBtn.pack(anchor=W,
+        self.noteFrameRefreshBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
-        self.nootFrameOpenDirBtn[
+        self.noteFrameRefreshBtn["command"] = self.refresh
+
+        self.noteFrameOpenDirBtn = ttk.Button(self.noteFrame_up,
+                                              text=" 启动工具 ",
+                                              bootstyle="success")
+        self.noteFrameOpenDirBtn.pack(anchor=W,
+                                      side=RIGHT,
+                                      padx=5,
+                                      pady=5,
+                                      ipadx=10,
+                                      ipady=10)
+        self.noteFrameOpenDirBtn[
             COMMAND] = lambda arg1=typedir, arg2=tool: self.openToolCmd(
                 arg1, arg2)
 
-        self.nootFrameCommandBtn = ttk.Button(self.noteFrame_up,
+        self.noteFrameCommandBtn = ttk.Button(self.noteFrame_up,
                                               text=" 编辑启动命令 ",
                                               bootstyle="info")
-        self.nootFrameCommandBtn.pack(anchor=W,
+        self.noteFrameCommandBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
                                       ipadx=10,
                                       ipady=10)
-        self.nootFrameCommandBtn[COMMAND] = self.openStartCommandIniFile
+        self.noteFrameCommandBtn[COMMAND] = self.openStartCommandIniFile
 
     def saveTypeNote(self, typedir):
         notePath = f"{self.rootPath}\{typedir}\{mark.toolNoteMark}"
@@ -331,8 +368,7 @@ class APP(ttk.Frame):
 
         else:
             Messagebox.ok(message="\n\t你还没有创建笔记，已自动创建初始化信息。\t\n",
-                          title='OpenNote',
-                          position=(mark.x, mark.y))
+                          title='OpenNote')
             infoMsg = f"-----你还没有创建笔记-----{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}-----"
             self.txtCount.delete('1.0', END)
             self.txtCount.insert(END, infoMsg)
@@ -350,8 +386,7 @@ class APP(ttk.Frame):
 
         else:
             Messagebox.ok(message="\n\t你还没有创建笔记，已自动创建初始化信息。\t\n",
-                          title='OpenNote',
-                          position=(mark.x, mark.y))
+                          title='OpenNote')
             infoMsg = f"-----你还没有创建笔记-----{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}-----"
             self.txtCount.delete('1.0', END)
             self.txtCount.insert(END, infoMsg)
@@ -395,11 +430,11 @@ class APP(ttk.Frame):
             self.txtCount.insert(END, f.read())
             print(f.read())
 
-        self.nootFrameCommandBtn.pack_forget()
-        self.nootFrameTxtSaveBtn['state'] = DISABLED
+        self.noteFrameCommandBtn.pack_forget()
+        self.noteFrameTxtSaveBtn['state'] = DISABLED
         self.saveBtn = ttk.Button(self.noteFrame_up,
                                   text="保存启动命令",
-                                  bootstyle="info")
+                                  bootstyle="danger")
         self.saveBtn.pack(anchor=W,
                           side=RIGHT,
                           padx=5,
@@ -417,7 +452,7 @@ class APP(ttk.Frame):
         print(type(command_ini_data))
         self.saveBtn.pack_forget()
 
-        self.nootFrameCommandBtn.pack(anchor=W,
+        self.noteFrameCommandBtn.pack(anchor=W,
                                       side=RIGHT,
                                       padx=5,
                                       pady=5,
@@ -426,8 +461,13 @@ class APP(ttk.Frame):
         with open(path, "w", encoding='utf-8') as f:
             f.write(command_ini_data)
 
+    def refresh(self):
+        self.toolsDic = tools_dict.toolsDir()
+        print(self.toolsDic)
+        self.toolFrameFun()
 
-root = ttk.Window(title="TOOLS_GUI    一款可以自己更新的工具箱__v1.0    by：tyb",
+
+root = ttk.Window(title="TOOLS_GUI    一款可以自己更新的工具箱__v1.0    by：tyb-or",
                   themename="morph")
 root.geometry(f'{mark.width}x{mark.height}+{mark.scree}')
 root.iconbitmap('logo.ico')
