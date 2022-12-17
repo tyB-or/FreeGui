@@ -4,6 +4,8 @@ freeGui：基于ttkbootstrap开发的一款windows渗透测试工具管理框架
 
 后期会往里面增加工具和笔记
 
+（python可以打包成exe,不想打包的话就用专门的工具把bat等转成exe,就可以拖到外面了。）
+
 ## 工具基础使用：
 
 1.下载解压后，你得到的是演示demo，删除其余文件，仅保留FreeGui_v2.1_win即可。
