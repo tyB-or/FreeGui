@@ -1,89 +1,85 @@
-'''
-time: 20221127
 
-这个文件保存的是工具的架构标识，可以自己喜好设置。
-基础架构：
-1--信息收集 					#工具类别
-	urlfind					   #具体工具的名称
-		00.txt				   #工具的笔记
-		xxx.py				   #工具的源文件，启动文件，注意：请不要再新增一级目录
-
-工具的启动类型：
-
-python   xx.py
-start  xx.exe
-
-'''
+#=======================================工具类别和笔记-标识=========================================
 
 # 工具类别目录标识
 # 例如：1--信息收集,记号是mark
 toolsTypeDirMark = '--'
 
-# 具体工具
+# 具体工具笔记
 # 工具笔记文件名标识,txt是必要的
 toolNoteMark = '00.txt'
+
+
 
 # 工具的分类建议：
 '''
 vnlmap_0.9_py
 名称-版本-类型
 '''
+#=======================================界面大小和屏幕位置和app样式=========================================
 
 # 初始窗口大小，root.geometry('2400x1600+300+200')
-height = 1550   #高
-width = 2550	#宽
+appHeight = 1550   #高
+appWidth = 2550	 #宽
+# 屏幕上左边距
+appScree = "300+200"
 
-# height = 1000   #高
-# width = 1200	#宽
-
-
-'''
-如果显示异常，请对照gui.py修改:
-
-# 工具框架-容器， #ScrolledFrame----init方法内
-self.toolFra  = ttk.LabelFrame(
-    self,text="工具导航-ToolsGui",bootstyle=PRIMARY,width=self.width/2,-----------------
-    height=self.height,labelanchor=NW,padding=7,border=10)
-self.toolFra.pack(side="left",fill=BOTH,ipadx=7,ipady=10,padx=10,pady=20,expand=True)
-self.toolFrame = ScrolledFrame(self.toolFra,autohide=True,width=1100,height=2500,bootstyle="round") #bootstyle='danger-round
-self.toolFrame.pack(fill=BOTH,anchor=NW)
+#ttk框架的样式-str
+appThemename = "darkly"
+#app的title
+#title="FREE_GUI    一款可以自己更新的工具箱__v2.2    by：tyb-or"
+appTitle="我的小工具"
 
 
 
-# 笔记框架-容器
-self.noteFrame = ttk.LabelFrame(
-self,text="Note",bootstyle=PRIMARY,width=self.width/2,height=self.height,labelanchor=NW,padding=7,border=10)
-self.noteFrame.pack(side="right",fill=BOTH,ipadx=7,ipady=10,padx=10,pady=20,expand=True)
 
-# 笔记框架内部分配：下面添加一个滚动txt控件，显示笔记内容。
-self.noteFrame_down = ttk.LabelFrame(self.noteFrame,text=" --Content--  ",style=SUCCESS,padding=5)
-self.noteFrame_down.pack(fill=BOTH,padx=3,pady=3)
+#===================工具框架-大小、布局、样式设置=========================================
 
-self.txtCount = ScrolledText(self.noteFrame_down,width=1200, height=1000,bootstyle='success-round',autohide=True)
-self.txtCount.pack(fill=BOTH,side=BOTTOM,anchor=NW)
+# 工具框架的标题
+toolFrameText = "工具导航-ToolsGui"
+# 工具框架的主题
+toolFrameBootstyle = "PRIMARY"
+# 工具框架的宽  总宽的 3/5
+toolFrameWidth = int(appWidth/5*3) #下取整
+# 工具框架的高
+toolFrameHeight = appHeight
+# 工具框架的滚动条样式
+toolFrameBootstyle_Scrolled = "round"
+
+# 工具多少列
+toolColumn = 4
+# 每列列宽，见控制台调试信息：总宽-工具宽-笔记宽-工具列宽
+# 这里好像会受到显示器分辨率的问题显示异常，我的数据是2550 1530 1020 255，255修改成20才显示完全
+# toolFrameToolColumnWidth = int(toolFrameWidth/toolColumn)
+toolFrameToolColumnWidth = 30
+
+# 工具类别按钮的样式
+toolTypeBootstyle = "info"
+toolBtnBootstyle = "info-link"  # 工具按钮的样式
+
+# 留空位标志符号：
+after = "-"
 
 
-def toolFrameFun(self):----内部：
+#====================笔记框架-样式修改=========================================
+# 笔记框架的标题
+noteFrameText = "Note"
+# 笔记框架的主题
+noteFrameBootstyle = "PRIMARY"
+# 笔记框架的宽，总宽的2/5
+noteFrameWidth = int(appWidth/5*2) #下取整
+# 笔记框架的高
+noteFrameHeight = appHeight
 
-for i in range(5):
-    self.Btnfr1 = ttk.Checkbutton(self.toolFrame,text="-",width=16,bootstyle="warning-toolbutton").grid(pady=5,row=0, column=i) #,state="disabled"
-        
-
-'''
-
-
-# 上左边距，下面的两个参数，作用是保证弹框在中间（取消--1215）
-scree = "300+200"
-
-
-
-# position=(500,500)   左，上位置
-# up = 1000
-# left = 400
-
-# x = 400
-# y = 1000
-
-# x = 620
-# y = 800
-
+#笔记框架功能框架样式
+noteFrameUpFraBootstyle = "PRIMARY"
+#笔记框架上面框架中的按钮的样式--同步修改工具框架中留空位置的颜色
+noteFrameFunBtnBootstyle = "success"
+noteFrameFunBtnBootstyle2 = "info"   #启动命令修改按钮样式的单独设置
+noteFrameFunBtnBootstyle3 = "danger"  #启动命令按钮样式的单独设置
+#笔记框架文本框架标题
+noteFrameDownTxt = " --Content--  "
+#笔记框架文本框架样式
+noteFrameDownStyle = "success"
+#笔记框架文本框架滚动样式
+noteFrameDownScrolled = 'success-round'
