@@ -37,7 +37,7 @@ class APP(ttk.Frame):
                                     padding=7,
                                     border=10)
         self.toolFra.pack(side="left",
-                        fill=BOTH
+                        fill=BOTH,
                         ipadx=7,
                         ipady=10,
                         padx=10,
