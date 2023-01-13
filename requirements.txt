@@ -1,1 +1,1 @@
-ttkbootstrap
+ttkbootstrap==1.7.4

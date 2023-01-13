@@ -1,191 +1,191 @@
-## 前言
+# 工具介绍
 
-freeGui：基于ttkbootstrap开发的一款windows渗透测试工具管理框架。你可以用来动态管理自己的工具，框架内部提供了笔记备忘，一键启动，直达目录等实用功能。
+freeGui：基于ttkbootstrap开发的一款用来管理自己的渗透测试工具的一个小工具，并提供一些实用小功能，例如打开目录，运行工具，工具备忘命令。
 
-后期会往里面增加工具和笔记
+# 开发目的
 
-（python可以打包成exe,不想打包的话就用专门的工具把bat等转成exe,就可以拖到外面了。）
+总结：工具整理+效率提升
 
-## 工具基础使用：
+1.工具太多，杂乱，用这个可以帮忙分类工具
 
-1.下载解压后，你得到的是演示demo，删除其余文件，仅保留FreeGui_v2.1_win即可。
+2.一些不常用的工具需要使用时可能需要重新查资料，这个可以记录一些备忘（txt笔记）方便快速查询
 
-2.安装模块：
+3.有的工具使用需要修改配置文件，使用这个可以一键直达工具目录
+
+4.工具快捷启动，添加启动命令以后可以直接启动工具
+
+5.自由删减工具，用过一些集成工具，虽然开箱即用，但是自由度不高。这个可以帮助自己构建属于自己的工具箱。
+
+6.工具外观自由，工具内部提供高度自由化的配置，可以在工具内部按照自己的喜好修改样式。
+
+# 工具使用：
+
+注意：请使用python3.10及以上版本，低版本可能会出现异常。
+
+## 1.安装模块：
 
 ```
-pip   install  -r  requirements.txt
+pip  install  -r  requirements.txt
 ```
 
-3.在FreeGui_v2.1_win的同级目录下创建自己想要的工具分类目录（带有“--”标识），例如：01--信息收集
+## 2.启动方式：
 
-4.在创建好的目录（01--信息收集）中放入想要添加的工具，例如：appinfoscan
-
-5.启动工具：
-
-```python
-# 启动方式：
+```
+1.控制台模式：（查看调试信息）
 python  gui.py  
-# 或者双击
-startGui.bat 、  startGui.vbs  都行
+
+2.bat启动
+startGui.bat  （已经设置隐藏启动）
+
+3.exe文件：
+--（这里可以使用python打包成exe，但是我没有弄，你自己可以本地尝试下）
+使用其他工具把bat转成exe(推荐)
+Quick Batch File Compiler【可以设置图标】
 ```
 
-6.重复循环3-4，时间久了，就会形成自己的工具箱。
+## 3.功能介绍：
 
-参考demo:
+a.工具按钮：鼠标左键单击查看，右键单击运行，左键双击打开对应的目录，等同右边笔记上面的按钮。
 
-![image-20221212202346022](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212202346022.png)
+b.配置文件可以控制软件大小，布局，按钮颜色等样式。请自行研究（样式修改按钮）
 
+c.命令配置文件配置一键启动命令，没有就默认进入对应的cmd界面
 
+d.工具框架中上面的是菜单切换，点击可以切换。
 
-## 工具界面介绍：
+e.自由添加工具分类和工具：类别目录添加时需要带标识：--，类别目录下可自由添加工具，目录名字不宜太长。（请阅读配置文件修改）
 
-1：
+（工具汇总：链接：https://pan.baidu.com/s/19qQHDk49NTUKfq3jXAnB2A?pwd=wby8 提取码：wby8 ）
 
-![image-20221212204834349](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212204834349.png)
+![image-20230113221452852](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20230113221452852.png)
 
-2：
+# 配置文件说明：
 
-![image-20221212205434389](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212205434389.png)
+样式配置文件：app样式，工具框样式，笔记框样式
 
-3：
+\config\\config.ini
 
-![image-20221212205843428](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212205843428.png)
+```
+#20230111
+#bytyb-or
+#python3.10#3.7有问题，建议使用3.10版本
+#样式参考：https://ttkbootstrap.readthedocs.io/en/latest/zh/
 
-![image-20221212205942883](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212205942883.png)
+#"""
+#修改外观，样式
+#配置文件分为app(全局)app-左（工具）app-右（笔记）3大区域
+#"""
 
-4：启动命令说明：
+#===================================工具相关参数=====================================
 
-点击前：
+[app]
+title=渗透测试工具箱
+#工具的标题
+theme=darkly
+#工具主题样式，参考：litera，darkly，lumen，sandstone，yeti，united，morph，journal，superhero，solar，simplex，cerculean
 
-![image-20221212210234445](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212210234445.png)
+size_w=2550
+#工具大小--宽
+size_h=1550
+#工具大小--高
 
-点击后：
+average = 5
+#工具等分为多少份
+tool_aver = 3
+#工具框架占比3份，说明，工具框架的宽度占比总宽的3/5
+note_aver = 2
+#工具框架占比3份，占比总宽的2/5
 
-![image-20221212210645137](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212210645137.png)
 
-5：启动工具按钮说明：
+txt_mark=00.txt
+#笔记标识，每个工具的txt备忘。不建议修改。00可以保证排序比较前。
 
-我在这里把工具分为2类，图形化工具和命令行工具，在使用命令行工具时，点击按钮会自动进入该工具的cmd界面，并设置title
+#============================tool框架相关参数-左边====================================
 
-![image-20221212211634138](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212211634138.png)
+[tool]
+title=工具导航-ToolsGui
+#工具框架的标题
+theme=primary
+#Labelframe控件bootstyle，影响边框颜色参考：default,primary,success,info,warning,danger
+scrolled=round
+#滚动条样式：圆【加-round】和方形，方形参考：default,primary,secondary,success,info,warning,danger,light,dark，圆角举例：danger-round，默认圆角就是round
 
-图形化工具：如果不想使用命令行的方式启动，那就先配置好启动命令，保存后双击就是直接启动工具：
+toolColumn=6
+#多少列，工具框架中多少列，可修改
+columnWidth=20
+#列宽--自己设置，分辨率会影响，所以需要自己调试
 
-（常见的启动方式：java  -jar  xx.jar        start  xx.exe   ）
+#注意：这里的后面的标识也是目录识别的特征，可以自己设置，根据不同的标识区分不同类别，实现功能菜单的切换
+#同步toolColumn参数，如果设置7列，列表中必须7个元素，如果分类不多，就用["预留X","自己设定标志识别符"]占位。
+funList=[["测试工具","--"],["红蓝对抗","~~"],["学习笔记","__"],["预留1","自己设定标志识别符"],["预留2","自己设定标志识别符"],["预留3","自己设定标志识别符"]]
 
-![image-20221212211856154](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212211856154.png)
+funBtnBootstyle=success
+#工具框架中的菜单切换按钮的样式，Bootstyle：default,primary,secondary,success,info,warning,danger,light,dark
+typeBtnBootstyle=info
+#工具类别按钮的样式,Bootstyle：Bootstyle：default,primary,secondary,success,info,warning,danger,light,dark
+toolBtnBootstyle=info-link
+#工具按钮的样式，Bootstyle：success-linkdanger-link（参考上面的加-link）
 
-## 后续：
 
-布局优化、添加工具和笔记。
+#==================================note框架相关参数-右边===============================
 
-不足之处：有的地方异常处理缺少交互。但是不影响使用。
+[note]
+title=Note
+#笔记框架的标题
+theme=PRIMARY
+#笔记框架样式，Labelframe控件bootstyle，影响边框颜色参考：default,primary,success,info,warning,danger
+theme_up = default
+#笔记框架功能框架样式，Labelframe控件bootstyle，影响边框颜色参考：default,primary,success,info,warning,danger
 
-针对不同尺寸的电脑屏幕显示会有异常（如果你的电脑显示有异常，欢迎提交issues，我会尽力解决）
+funBtnBootstyle=warning
+#笔记框架中上面的按钮的样式，Bootstyle：Bootstyle：default,primary,secondary,success,info,warning,danger,light,dark
 
-对应代码片段：
+startComBtnBootstyle_open=info
+#启动命令修改按钮样式的单独设置，参考Bootstyle
+startComBtnBootstyle_save=danger
+#启动命令按钮样式的单独设置，参考Bootstyle
 
-![image-20221212214944724](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212214933439.png)
-![image-20221212212716778](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212214944724.png)
+styleBtnBootstyle_open=info
+#样式修改按钮样式的单独设置，参考Bootstyle
+styleBtnBootstyle_save=danger
+#样式保存按钮样式的单独设置，参考Bootstyle
 
-mac版本的适配也在进行中，感谢@asaotomo
+txt_title=--Content--
+#txt笔记的文本提示信息，LabelFrame，后续会随点击的工具不同，变成对应的路径信息
 
-## DIY功能：
+noteFrameDownStyle=success
+#笔记框架文本框架样式，Style  笔记框架中分上下，上-功能，下-txt笔记，
+scrolledTextBootstyle=success-round
+#txt笔记的滚动条样式，#滚动条样式：圆【加-round】和方形，方形参考：Bootstyle：default,primary,secondary,success,info,warning,danger,light,dark，圆角举例：danger-round，默认圆角就是round
 
-**--修改标识，位置：**
 
-配置文件：FreeGui_v2.1_win\config\mark.py
+```
 
+启动命令配置文件：
 
-![image-20221212214933439](https://github.com/tyB-or/FreeGui/blob/main/image/image-20221212212716778.png)
+\config\\startCommand.ini
 
+```
+#添加参考：
+#[webfinder-3.2]      这个是工具的目录
+#command = java -jar webfinder-3.2.jar   这个是在工具当前目录下的启动工具的命令，不需要加引号。
+#type = powershell    【可选】，若添加此参数，会调用powershell
+#
+#常见问题：
+#1.工具的名称填写不规范，会默认进入工具的cmd界面
+#2.双击启动没有反应，启动命令填写错误，可以用python  gui.py，在控制台查看报错信息
+#
+#启动命令参考：start xx.exe    java -jar  xx.jar
 
 
-**--修改内部布局，样式：**
+# =========================英文路径工具=========================
+[0-GUI_Tools]
+command = start  start.vbs
+```
 
-主程序文件：FreeGui_v2.1_win\gui.py
 
-样式修改参考：https://ttkbootstrap.readthedocs.io/en/latest/zh/
 
-
-
-**--自由、快速、便捷的添加和更新工具**
-
-启动命令保存即生效。
-
-工具更新，点击刷新GUI按钮即可生效。
-
-## 更新记录：
-
-**20221213更新**：v2.2
-
-优化布局：采用等宽靠左布局。同时工具界面预留5个位置，方便后续功能拓展。
-
-优化保存启动命令的点击逻辑：点击后笔记框恢复原来的工具命令笔记，并恢复保存笔记按钮的功能。
-
-补充mac版本。
-
-解决bug：点击刷新gui时，原先控件影像残留问题
-
-
-**屏幕大小显示异常问题请按需修改源码：**
-
-gui.py【下面是针对macbookpro-2021-13.3英寸进行适配修改的，初始设置均为一半】
-
-工具界面-宽：width=self.width / 3【第50行】
-
-笔记界面-宽：width=(self.width / 3) * 2【第59行】
-
-同时，在代码的【156行】调整参数：width=16
-
-初始大小和位置请修改config.mark文件，里面有详细说明。
-
-**20221217更新**：添加工具（样式可以自己修改，白的太亮了，笔记不是很清楚，自己换成黑暗样式）
-![image](https://user-images.githubusercontent.com/38561404/208229483-661b9f20-e0df-4085-aecd-33c033d0f65e.png)
-
-工具链接：
-链接：https://pan.baidu.com/s/1fLm5QCbK8JvJLV0MetkPCg?pwd=t1ui 
-提取码：t1ui 
-
-使用说明：
-在工具的同级目录下导入这些类别的工具，部分工具需要解压后使用（放的是压缩包），且工具名不要太长，否则上面的灰条会有分割提示你。
-因为工具在使用的过程中会包含一些项目敏感信息，也不想再去找原版工具了，所以后续应该是不会在更新了。
-工具本意是构造自己熟悉的工具箱，记录工作中的想法，记性不好经常反复查资料，有的东西用的次数不多，容易忘，这个工具刚好记录，有个印象直接在工具里找，比较快。
-工具不仅仅可以放工具，放一些笔记，文档资料也行，方便自己速查。
-
-**20230110：提升自由度**
-更新：（耗费时间：20230109--20230110），正好一起解决了，顺路补充下集成工具箱：开箱即用。
-
-1.配置参数化：修改mark.py参数
-调整工具大小，位置，内部工具，笔记占比，这里设置3:2，可修改。
-可自由设置工具框架中每列工具宽度（自适应受到分辨率影响，所以需要手工设置），一行显示几个工具。摆脱工具名称过长的影响。
-修改工具的样式-总样式
-修改内部按钮的样式：类别按钮，工具按钮，笔记功能按钮，滚动条样式。
-文本自定义：自由设定修改文字信息，软件标题，工具标题，笔记标题，功能预留标志符
-
-2.修改启动命令配置文件：
-增加powershell启动，增加参数可打开powershell，方便启动需要powershell权限的工具
-
-3.外观修改：
-笔记框架中功能按钮按左布局，避免挤占
-删除笔记框架中信息显示文本框，改为动态显示：点击左边按钮，显示对应的路径信息。
-
-存在问题：设置3:2，全屏后变为1:1，这个问题暂时没找到原因，不搞了。
-工具箱地址：
-链接：https://pan.baidu.com/s/19qQHDk49NTUKfq3jXAnB2A?pwd=wby8 
-提取码：wby8 
---来自百度网盘超级会员V6的分享
-
-![image](https://user-images.githubusercontent.com/38561404/211466071-2c0dd322-2958-405e-ad9b-033c55d938cf.png)
-
-
-
-
-## 常见问题：
-1.因为当前gui框架自身原因，请尽量设置短工具名，同时，因为屏幕大小和分辨率问题，查看了官方文档并没有很好的办法解决，请参考config\mark.py文件中的说明进行调整，这个需要你有一定的代码基础。
-
-
-## 免责声明
+# 免责声明
 
 ```
 本工具仅面向合法授权的企业安全建设行为，在使用本工具进行检测时，您应确保该行为符合当地的法律法规，并且已经取得了足够的授权。  
