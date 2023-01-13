@@ -56,8 +56,12 @@ d.工具框架中上面的是菜单切换，点击可以切换。
 e.自由添加工具分类和工具：类别目录添加时需要带标识：--，类别目录下可自由添加工具，目录名字不宜太长。（请阅读配置文件修改）
 
 （工具汇总：链接：https://pan.baidu.com/s/19qQHDk49NTUKfq3jXAnB2A?pwd=wby8 提取码：wby8 ）
+工具展示图：
+![image](https://user-images.githubusercontent.com/38561404/212345858-ca79d9d3-6581-4979-83a9-9af9dc3ba219.png)
+目录结构图：
+请仔细阅读配置文件，在设置类别目录时请带标识。
+![image](https://user-images.githubusercontent.com/38561404/212346586-bdad75e9-9626-464c-9376-a343a2f02e05.png)
 
-![image-20230113221452852](C:\Users\h\AppData\Roaming\Typora\typora-user-images\image-20230113221452852.png)
 
 # 配置文件说明：
 
